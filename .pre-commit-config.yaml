@@ -1,0 +1,39 @@
+---
+repos:
+  - repo: meta
+    hooks:
+      - id: identity
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+      - id: markdownlint
+        args: [-s, .markdownlint.rb]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v1
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.2.3
+    hooks:
+      - id: nbqa-black
+      - id: nbqa-pyupgrade
+        args: [--py38-plus]
+      - id: nbqa-isort
+      - id: nbqa-flake8
+      - id: nbqa-mypy
+        additional_dependencies:
+          - mypy
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.5
+    hooks:
+      - id: shellcheck
